@@ -1,0 +1,29 @@
+
+> auth-tutorial@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.2.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.141:3000
+
+ ✓ Starting...
+ ✓ Ready in 13.9s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 7.1s (1125 modules)
+ GET /_next/static/webpack/05f5e80935630bdb.webpack.hot-update.json 404 in 8305ms
+ GET /_next/static/webpack/05f5e80935630bdb.webpack.hot-update.json 404 in 8366ms
+ ✓ Compiled in 851ms (325 modules)
+ ○ Compiling /something ...
+ ✓ Compiled /something in 4.2s (1348 modules)
+ ○ Compiling /_error ...
+ GET /something 500 in 9437ms
+ GET /nextone 500 in 9443ms
+ ✓ Compiled /_error in 5.6s (1674 modules)
+ GET /_next/static/webpack/05f5e80935630bdb.webpack.hot-update.json 404 in 11050ms
+ GET /_next/static/webpack/05f5e80935630bdb.webpack.hot-update.json 404 in 11049ms
+ GET /nextone 500 in 3180ms
+ GET /something 500 in 3188ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 599ms (1033 modules)
+ GET /favicon.ico 200 in 1134ms
+ GET /favicon.ico 200 in 1190ms
