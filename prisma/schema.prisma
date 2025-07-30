@@ -83,13 +83,22 @@ model TwoFactorConfirmation {
   @@unique([userId])
 }
 
-model Property{
-  id                String   @id @default(cuid()) @map("_id") 
-  title             String
-  content           String
+model Property {
+  id          String   @id @default(cuid()) // Unique identifier
+  title       String
+  address     String
+  distance    String
+  price       String
+  dateRange   String
+  rating      Float
+  description String
+  videoUrl    String
+  isFavorite  Boolean @default(false) // Indicates if the property is marked as favorite
+  createdAt   DateTime @default(now()) // Tracks when the property was created
+  updatedAt   DateTime @updatedAt // Tracks when the property was last updated
+  gallery     String[] // Array to store image URLs
+
   author            User?   @relation(fields: [authorEmail], references: [email])
   authorEmail       String?
-  embedding         Float[]  // store vector
-  updatedAt DateTime @updatedAt
-
 }
+

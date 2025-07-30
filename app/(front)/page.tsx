@@ -1,5 +1,3 @@
-// app/properties/page.tsx or app/listings/page.tsx
-'use client'
 
 import CallToAction from '@/components/frontPage/CallToAction'
 import HeroCarousel from '@/components/frontPage/HeroCarousel'
