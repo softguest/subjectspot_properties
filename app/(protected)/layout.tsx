@@ -1,6 +1,6 @@
 import Footer from '@/components/dashboard/Footer'
-import Navbar from '@/components/dashboard/Narbar'
 import Sidebar from '@/components/dashboard/Sidebar'
+import Navbar from '@/components/frontPage/Navbar';
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;
