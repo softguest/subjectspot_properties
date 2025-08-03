@@ -1,33 +1,17 @@
-import Image from 'next/image';
+import { db } from "@/lib/db";
+import Image from "next/image";
+import { notFound } from "next/navigation";
 
 interface PropertyDetailPageProps {
-  params: {
-    id: string;
-  };
+  params: { id: string };
 }
 
-const property = {
-    id: '1',
-    imageUrl: '/images/property01.jpg',
-    title: 'Cabin Retreat',
-    description:
-      'Escape to this beautiful lakeside villa nestled in lush greenery. Enjoy peaceful mornings on the deck, swim in the infinity pool, and relax in a modern glasshouse-style interior. Perfect for families or romantic getaways.',
-    address: 'Cavinti, Philippines',
-    distance: '2 miles to Pagsanjan Gorge National Park',
-    rating: 4.93,
-    price: '₱41,014 for 5 nights',
-    dateRange: 'Jun 7 – 12',
-    isFavorite: true,
-    gallery: [
-      '/images/property02.jpg',
-      '/images/property01.jpg',
-      '/images/28.webp',
-      '/images/property03.jpg',
-    ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-  }
+export default async function PropertyDetails({ params }: PropertyDetailPageProps) {
+  const property = await db.property.findUnique({
+    where: { id: params.id },
+  });
 
-const PropertyDetails =() => {
+  if (!property) return notFound();
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-8 space-y-10">
@@ -40,29 +24,36 @@ const PropertyDetails =() => {
       </div>
 
       {/* YouTube Video Embed */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Watch the Land Tour</h2>
-        <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg">
-          <iframe
-            className="w-full h-full"
-            src={property.videoUrl}
-            title="YouTube video player"
-            allowFullScreen
-          />
-        </div>
-      </section>
+      {property.videoUrl && (
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Watch the Land Tour</h2>
+          <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg">
+            <iframe
+              className="w-full h-full"
+              src={property.videoUrl}
+              // src={`https://www.youtube.com/embed/${new URL(property.videoUrl).searchParams.get("v")}`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="YouTube video player"
+            />
+          </div>
+        </section>
+      )}
 
       {/* Image Gallery */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Land Image Gallery</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {property.gallery.map((src, idx) => (
-            <div key={idx} className="relative w-full h-52 rounded-lg overflow-hidden">
-              <Image src={src} alt={`Gallery image ${idx + 1}`} fill className="object-cover" />
-            </div>
-          ))}
-        </div>
-      </section>
+      {property.gallery.length > 0 && (
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Land Image Gallery</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {property.gallery.map((src, idx) => (
+              <div key={idx} className="relative w-full h-52 rounded-lg overflow-hidden">
+                <Image src={src} alt={`Gallery image ${idx + 1}`} fill className="object-cover" />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Description + Sidebar */}
       <div className="grid md:grid-cols-3 gap-8">
@@ -83,6 +74,4 @@ const PropertyDetails =() => {
       </div>
     </main>
   );
-};
-
-export default PropertyDetails;
+}

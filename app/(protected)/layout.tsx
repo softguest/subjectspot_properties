@@ -9,11 +9,11 @@ interface ProtectedLayoutProps {
 const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
   return ( 
     <div className="flex flex-col min-h-screen">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="flex flex-grow">
         <main className="bg-gray-50 w-full">{children}</main>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
    );
 }

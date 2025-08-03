@@ -1,7 +1,7 @@
 // components/Navbar.tsx
 'use client'
 
-import { Menu, Search, Globe, UserCircle2 } from 'lucide-react'
+import { Menu, Search, Globe, UserCircle2, PlusIcon } from 'lucide-react'
 // import { Span } from 'next/dist/trace'
 // import Image from 'next/image'
 import Link from 'next/link'
@@ -29,13 +29,15 @@ const Navbar = () => {
 
         {/* Right icons */}
         <div className="flex items-center space-x-4">
-          <button className="hidden md:inline text-sm font-medium">Find Land</button>
+          <button className="hidden md:inline text-sm font-medium">Find Property</button>
           <Globe className="text-gray-600 hover:text-black cursor-pointer" />
 
-          <div className="flex items-center border rounded-full p-2 space-x-2 hover:shadow-md transition">
-            <Menu size={16} className="text-gray-600" />
-            <UserCircle2 size={24} className="text-gray-600" />
-          </div>
+          <Link href="/properties/create">
+            <div className="flex items-center border rounded-full p-2 space-x-2 hover:shadow-md transition">
+              <PlusIcon size={16} className="text-gray-600" />
+                Property
+            </div>
+          </Link>
         </div>
       </div>
     </header>
